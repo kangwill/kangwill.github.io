@@ -1,7 +1,7 @@
-body {
-    background-color: black;
-  }
-  
-h1{
-    color: white;
+canvas{
+    border: 1px solid black;
+}
+
+body{
+    margin: 0;
 }
