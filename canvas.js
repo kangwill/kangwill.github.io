@@ -10,6 +10,16 @@ function random_rgba() {
     return 'rgba(' + o(r()*s) + ',' + o(r()*s) + ',' + o(r()*s) + ',' + r().toFixed(1) + ')';
 }
 
+let mouse = {
+    x: undefined,
+    y: undefined
+}
+window.addEventListener('mousemove', 
+    function(ev){
+        mouse.x = event.x;
+        mouse.y = event.y;
+})
+
 function Circle(x, y, dx, dy, radius){
     this.x = x;
     this.y = y;
@@ -37,6 +47,10 @@ function Circle(x, y, dx, dy, radius){
         }
         this.x += this.dx;
         this.y += this.dy;
+        
+        if(mouse.x - this.x < 50){
+            this.radius +=1;
+        }
         this.draw();
     }
 }
