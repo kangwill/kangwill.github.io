@@ -11,18 +11,22 @@ section{
     position: relative;
 }
 
-button{
+a{
     background-color: transparent;
     border: none;
     color: white;
     font-size: 50px;
-    width: 100%;
+    transform: translateX();
     outline: 0;
     transition-duration: 0s;
 }
 
-button:hover{
+a:hover{
     color: yellow; 
+}
+
+.wrapper{
+    text-align: center;
 }
 
 canvas{

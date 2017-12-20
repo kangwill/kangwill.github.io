@@ -82,5 +82,3 @@ function animate(){
 }
 
 animate();
-
-$('body').css({'background-image':"url(" + Canvas.toDataURL("image/png")+ ")" });
