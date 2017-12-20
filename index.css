@@ -2,3 +2,13 @@ body{
     margin: 0;
     background-color: black;
 }
+
+img{
+    border-radius: 50%;
+    position: relative;
+}
+
+
+canvas{
+    position: fixed;
+}

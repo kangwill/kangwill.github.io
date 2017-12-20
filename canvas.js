@@ -62,12 +62,12 @@ function Circle(x, y, dx, dy, radius){
     
 let circleArray = [];
 
-for(let i = 0; i < 800; i++){
+for(let i = 0; i < 1600; i++){
     let radius = 2;
     let x = Math.random() * (innerWidth - radius * 2) + radius;
     let y = Math.random() * (innerHeight - radius * 2) + radius;
-    let dx = (Math.random() - .05) * 10;
-    let dy= (Math.random() - .05) * 10;
+    let dx = (Math.random()-.5);
+    let dy= (Math.random()-.5);
     circleArray.push(new Circle(x, y, dx, dy, radius));
 }
 
@@ -82,3 +82,5 @@ function animate(){
 }
 
 animate();
+
+$('body').css({'background-image':"url(" + Canvas.toDataURL("image/png")+ ")" });
