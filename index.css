@@ -5,9 +5,25 @@ body{
 
 img{
     border-radius: 50%;
+}
+
+section{
     position: relative;
 }
 
+button{
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 50px;
+    width: 100%;
+    outline: 0;
+    transition-duration: 0s;
+}
+
+button:hover{
+    color: yellow; 
+}
 
 canvas{
     position: fixed;
