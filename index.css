@@ -3,18 +3,19 @@ body{
     background-color: black;
 }
 
-img{
-    border-radius: 50%;
-}
-
 section{
     position: relative;
+}
+
+h1{
+    color: rgb(21, 248, 21);
+    padding: 10px;
 }
 
 a{
     background-color: transparent;
     border: none;
-    color: white;
+    color: rgb(21, 248, 21);
     font-size: 50px;
     transform: translateX();
     outline: 0;
