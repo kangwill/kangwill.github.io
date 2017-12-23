@@ -92,8 +92,8 @@ function ship(x, y){
     this.update = function(){
         this.speedX = 0;
         this.speedY = 0; 
-        if (keyboard.key == 37) {this.speedX = -5; }
-        if (keyboard.key == 39) {this.speedX = 5; }
+        if (keyboard.key == 37) {this.speedX = -10; }
+        if (keyboard.key == 39) {this.speedX = 10; }
         if (keyboard.key == 32) {
             fireArray.push(new Fire(this.x,this.y));
         }
@@ -125,7 +125,7 @@ function Fire(x, y){
         c.stroke();
     }
     this.update = function(target, target2, target3){
-        this.y -= 10;
+        this.y -= 15;
         this.draw();
         let targetLeft = target.x;
         let targetRight = target.x + target.width;
