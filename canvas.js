@@ -21,6 +21,18 @@ window.addEventListener('mousemove',
         mouse.y = event.y;
 })
 
+let keyboard = {
+    key: undefined
+}
+
+window.addEventListener('keydown', function (e){
+    keyboard.key = e.keyCode;
+})
+
+window.addEventListener('keyup', function (e){
+    keyboard.key = false;
+})
+
 function Circle(x, y, dx, dy, radius){
     this.x = x;
     this.y = y;
@@ -77,8 +89,40 @@ function animate(){
 
     for (let index = 0; index < circleArray.length; index++) {
         circleArray[index].update();
-        
+    }
+    spaceShip.newPos();
+    spaceShip.update();
+}
+
+function ship(x, y, color, width, height){
+    this.width = width;
+    this.height = height;
+    this.x = x;
+    this.y = y;
+    this.speedX = 0;
+    this.speedY = 0;
+
+    this.update = function(){
+        this.speedX = 0;
+        this.speedY = 0; 
+        if (keyboard.key == 37) {this.speedX = -1; }
+        if (keyboard.key == 39) {this.speedX = 1; }
+        this.draw();
+    }
+
+    this.draw= function(){
+        c.beginPath();
+        c.rect(this.x, this.y, this.width, this.height);
+        c.strokeStyle = color;
+        c.fillStyle = color;
+        c.fill()
+    }
+
+    this.newPos = function(){
+        this.x +=this.speedX;
+        this.y +=this.speedY;
     }
 }
+let spaceShip = new ship((canvas.width/2)-15,canvas.height-30,"red", 30, canvas.height);
 
 animate();
