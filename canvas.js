@@ -83,17 +83,6 @@ for(let i = 0; i < 1600; i++){
     circleArray.push(new Circle(x, y, dx, dy, radius));
 }
 
-function animate(){
-    requestAnimationFrame(animate);
-    c.clearRect(0, 0, innerWidth, innerHeight);
-
-    for (let index = 0; index < circleArray.length; index++) {
-        circleArray[index].update();
-    }
-    spaceShip.newPos();
-    spaceShip.update();
-}
-
 function ship(x, y, color, width, height){
     this.width = width;
     this.height = height;
@@ -105,8 +94,11 @@ function ship(x, y, color, width, height){
     this.update = function(){
         this.speedX = 0;
         this.speedY = 0; 
-        if (keyboard.key == 37) {this.speedX = -1; }
-        if (keyboard.key == 39) {this.speedX = 1; }
+        if (keyboard.key == 37) {this.speedX = -3; }
+        if (keyboard.key == 39) {this.speedX = 3; }
+        if (keyboard.key == 32) {
+            fireArray.push(new Fire(this.x,this.y));
+        }
         this.draw();
     }
 
@@ -123,6 +115,39 @@ function ship(x, y, color, width, height){
         this.y +=this.speedY;
     }
 }
-let spaceShip = new ship((canvas.width/2)-15,canvas.height-30,"red", 30, canvas.height);
+
+let fireArray = [];
+
+function Fire(x, y){
+    this.x = x+15;
+    this.y = y;
+    this.draw = function(){
+        c.beginPath();
+        c.moveTo(this.x, this.y);
+        c.lineTo(this.x, this.y-10);
+        c.stroke();
+    }
+    this.update = function(){
+        this.y -= 10;
+        this.draw();
+    }
+}
+
+let spaceShip = new ship((canvas.width/2)-15,canvas.height-60,"red", 30, 30);
+
+function animate(){
+    requestAnimationFrame(animate);
+    c.clearRect(0, 0, innerWidth, innerHeight);
+
+    for (let index = 0; index < circleArray.length; index++) {
+        circleArray[index].update();
+    }
+    spaceShip.newPos();
+    spaceShip.update();
+
+    for (let index = 0; index <fireArray.length; index++) {
+        fireArray[index].update();
+    }
+}
 
 animate();
