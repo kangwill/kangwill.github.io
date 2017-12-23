@@ -61,11 +61,11 @@ function Circle(x, y, dx, dy, radius){
         this.y += this.dy;
         
         if(mouse.x - this.x < 50 && mouse.x - this.x > -50 && mouse.y - this.y < 50 && mouse.y - this.y > -50){
-            if (this.radius < 40){
+            if (this.radius < 10){
                 this.radius +=1;
             }
         }
-            else if(this.radius > 2){
+            else if(this.radius > 1){
                 this.radius -= 1;
             }
         this.draw();
@@ -74,8 +74,8 @@ function Circle(x, y, dx, dy, radius){
     
 let circleArray = [];
 
-for(let i = 0; i < 1600; i++){
-    let radius = 2;
+for(let i = 0; i < 3200; i++){
+    let radius = 1;
     let x = Math.random() * (innerWidth - radius * 2) + radius;
     let y = Math.random() * (innerHeight - radius * 2) + radius;
     let dx = (Math.random()-.5);
@@ -83,9 +83,7 @@ for(let i = 0; i < 1600; i++){
     circleArray.push(new Circle(x, y, dx, dy, radius));
 }
 
-function ship(x, y, color, width, height){
-    this.width = width;
-    this.height = height;
+function ship(x, y){
     this.x = x;
     this.y = y;
     this.speedX = 0;
@@ -94,8 +92,8 @@ function ship(x, y, color, width, height){
     this.update = function(){
         this.speedX = 0;
         this.speedY = 0; 
-        if (keyboard.key == 37) {this.speedX = -3; }
-        if (keyboard.key == 39) {this.speedX = 3; }
+        if (keyboard.key == 37) {this.speedX = -5; }
+        if (keyboard.key == 39) {this.speedX = 5; }
         if (keyboard.key == 32) {
             fireArray.push(new Fire(this.x,this.y));
         }
@@ -103,11 +101,9 @@ function ship(x, y, color, width, height){
     }
 
     this.draw= function(){
-        c.beginPath();
-        c.rect(this.x, this.y, this.width, this.height);
-        c.strokeStyle = color;
-        c.fillStyle = color;
-        c.fill()
+        base_image = new Image();
+        base_image.src = 'Spaceship.png';
+        c.drawImage(base_image, this.x, this.y);
     }
 
     this.newPos = function(){
@@ -119,21 +115,79 @@ function ship(x, y, color, width, height){
 let fireArray = [];
 
 function Fire(x, y){
-    this.x = x+15;
+    this.x = x+62;
     this.y = y;
     this.draw = function(){
         c.beginPath();
+        c.strokeStyle = "red";
         c.moveTo(this.x, this.y);
         c.lineTo(this.x, this.y-10);
         c.stroke();
     }
-    this.update = function(){
+    this.update = function(target, target2, target3){
         this.y -= 10;
         this.draw();
+        let targetLeft = target.x;
+        let targetRight = target.x + target.width;
+        let targetLeft2 = target2.x;
+        let targetRight2 = target2.x + target.width;
+        let targetLeft3 = target3.x;
+        let targetRight3 = target3.x + target.width;
+        if (this.y == target.y && this.x >= targetLeft && this.x <= targetRight){
+            target.open();
+        }
+        if (this.y == target2.y && this.x >= targetLeft2 && this.x <= targetRight2){
+            target2.open();
+        }
+        if (this.y == target.y3 && this.x >= targetLeft3 && this.x <= targetRight3){
+            target3.open();
+        }
+    }   
+}
+
+function TargetResume(x, y){
+    this.x = x;
+    this.y = y;
+    this.draw = function(){
+        c.beginPath();
+        c.font = "50px Arial";
+        c.strokeText("Resume",this.x,this.y);
+    }
+    this.open = function(){
+        window.location.replace("http://facebook.com")
     }
 }
 
-let spaceShip = new ship((canvas.width/2)-15,canvas.height-60,"red", 30, 30);
+function TargetLinkedin(x, y){
+    this.x = x;
+    this.y = y;
+    this.draw = function(){
+        c.beginPath();
+        c.font = "50px Arial";
+        c.strokeText("Linkedin",this.x,this.y);
+    }
+    this.open = function(){
+        window.location.replace("http://facebook.com")
+    }
+}
+
+function TargetProjects(x, y){
+    this.x = x;
+    this.y = y;
+    this.draw = function(){
+        c.beginPath();
+        c.font = "50px Arial";
+        c.strokeText("Projects",this.x,this.y);
+    }
+    this.open = function(){
+        window.location.replace("http://facebook.com")
+    }
+}
+
+let spaceShip = new ship((canvas.width/2)-62,canvas.height-150);
+let resume = new TargetResume((canvas.width/4)-120,canvas.height/6);
+let linkedin = new TargetLinkedin((2*canvas.width/4)-120,canvas.height/4);
+let projects = new TargetProjects((3*canvas.width/4)-120,canvas.height/6);
 
 function animate(){
     requestAnimationFrame(animate);
@@ -146,8 +200,15 @@ function animate(){
     spaceShip.update();
 
     for (let index = 0; index <fireArray.length; index++) {
-        fireArray[index].update();
+        fireArray[index].update(resume, linkedin, projects);
     }
+    
+    c.strokeStyle = "lightgreen";
+    linkedin.draw();
+    projects.draw();
+    resume.draw();
 }
+
+window.alert("Use the arrow keys to move left and right. press the space bar to shoot");
 
 animate();
