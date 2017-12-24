@@ -178,7 +178,7 @@ function TargetLinkedin(x, y){
         c.strokeText(this.text,this.x,this.y);
     }
     this.open = function(){
-        window.location.replace("http://facebook.com");
+        window.location.replace("https://www.linkedin.com/in/kang-will/");
     }
 }
 
@@ -223,6 +223,6 @@ function animate(){
     resume.draw();
 }
 
-window.alert("Use the arrow keys to move left and right. press the space bar to shoot");
+window.alert("Use the arrow keys to move left and right. Press the space bar to shoot!");
 
 animate();
