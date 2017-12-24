@@ -164,7 +164,7 @@ function TargetResume(x, y){
         c.strokeText(this.text,this.x,this.y);
     }
     this.open = function(){
-        window.location.replace("http://facebook.com");
+        window.location.href = "http://facebook.com";
     }
 }
 
@@ -178,7 +178,7 @@ function TargetLinkedin(x, y){
         c.strokeText(this.text,this.x,this.y);
     }
     this.open = function(){
-        window.location.replace("https://www.linkedin.com/in/kang-will/");
+        window.location.href = "https://www.linkedin.com/in/kang-will/";
     }
 }
 
@@ -192,7 +192,7 @@ function TargetProjects(x, y){
         c.strokeText(this.text,this.x,this.y);
     }
     this.open = function(){
-        window.location.replace("http://facebook.com");
+        window.location.href= "http://facebook.com";
     }
 }
 
