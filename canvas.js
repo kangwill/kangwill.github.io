@@ -4,6 +4,7 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight-10;
 
 let c = canvas.getContext('2d');
+let stop = false;
 
 function random_rgba() {
     var o = Math.round, r = Math.random, s = 255;
@@ -87,11 +88,9 @@ function ship(x, y){
     this.x = x;
     this.y = y;
     this.speedX = 0;
-    this.speedY = 0;
 
     this.update = function(){
         this.speedX = 0;
-        this.speedY = 0; 
         if (keyboard.key == 37) {this.speedX = -10; }
         if (keyboard.key == 39) {this.speedX = 10; }
         if (keyboard.key == 32) {
@@ -107,8 +106,15 @@ function ship(x, y){
     }
 
     this.newPos = function(){
-        this.x +=this.speedX;
-        this.y +=this.speedY;
+        if(this.x <= 0){
+            this.x += 1;
+        }
+        else if(this.x >= innerWidth - 120){
+            this.x -=1;
+        }
+        else{
+            this.x +=this.speedX;
+        }
     }
 }
 
@@ -128,19 +134,22 @@ function Fire(x, y){
         this.y -= 15;
         this.draw();
         let targetLeft = target.x;
-        let targetRight = target.x + target.width;
+        let targetRight = target.x + c.measureText(target.text).width;
         let targetLeft2 = target2.x;
-        let targetRight2 = target2.x + target.width;
+        let targetRight2 = target2.x + c.measureText(target2.text).width;
         let targetLeft3 = target3.x;
-        let targetRight3 = target3.x + target.width;
-        if (this.y == target.y && this.x >= targetLeft && this.x <= targetRight){
+        let targetRight3 = target3.x + c.measureText(target3.text).width;
+        if (this.y < target.y && this.x >= targetLeft && this.x <= targetRight){
             target.open();
+            stop = true;
         }
-        if (this.y == target2.y && this.x >= targetLeft2 && this.x <= targetRight2){
+        if (this.y < target2.y && this.x >= targetLeft2 && this.x <= targetRight2){
             target2.open();
+            stop = true;
         }
-        if (this.y == target.y3 && this.x >= targetLeft3 && this.x <= targetRight3){
+        if (this.y < target3.y && this.x >= targetLeft3 && this.x <= targetRight3){
             target3.open();
+            stop = true;
         }
     }   
 }
@@ -148,39 +157,42 @@ function Fire(x, y){
 function TargetResume(x, y){
     this.x = x;
     this.y = y;
+    this.text = "Resume";
     this.draw = function(){
         c.beginPath();
         c.font = "50px Arial";
-        c.strokeText("Resume",this.x,this.y);
+        c.strokeText(this.text,this.x,this.y);
     }
     this.open = function(){
-        window.location.replace("http://facebook.com")
+        window.location.replace("http://facebook.com");
     }
 }
 
 function TargetLinkedin(x, y){
     this.x = x;
     this.y = y;
+    this.text = "Linkedin";
     this.draw = function(){
         c.beginPath();
         c.font = "50px Arial";
-        c.strokeText("Linkedin",this.x,this.y);
+        c.strokeText(this.text,this.x,this.y);
     }
     this.open = function(){
-        window.location.replace("http://facebook.com")
+        window.location.replace("http://facebook.com");
     }
 }
 
 function TargetProjects(x, y){
     this.x = x;
     this.y = y;
+    this.text = "Project";
     this.draw = function(){
         c.beginPath();
         c.font = "50px Arial";
-        c.strokeText("Projects",this.x,this.y);
+        c.strokeText(this.text,this.x,this.y);
     }
     this.open = function(){
-        window.location.replace("http://facebook.com")
+        window.location.replace("http://facebook.com");
     }
 }
 
@@ -190,6 +202,9 @@ let linkedin = new TargetLinkedin((2*canvas.width/4)-120,canvas.height/4);
 let projects = new TargetProjects((3*canvas.width/4)-120,canvas.height/6);
 
 function animate(){
+    if(stop == true){
+        c.stop();
+    }
     requestAnimationFrame(animate);
     c.clearRect(0, 0, innerWidth, innerHeight);
 
@@ -202,7 +217,6 @@ function animate(){
     for (let index = 0; index <fireArray.length; index++) {
         fireArray[index].update(resume, linkedin, projects);
     }
-    
     c.strokeStyle = "lightgreen";
     linkedin.draw();
     projects.draw();
