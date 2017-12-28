@@ -232,11 +232,14 @@ function animate(){
         fireArray[index].update(resume, linkedin, projects);
     }
     c.strokeStyle = "lightgreen";
+
+    c.beginPath();
+    c.font = "10px Arial";
+    c.strokeText("Use the arrow keys to move left and right. Use the space bar to shoot or simply click on the targets.",5,canvas.height-10);
+
     linkedin.draw();
     projects.draw();
     resume.draw();
 }
-
-window.alert("Use the arrow keys to move left and right. Press the space bar to shoot!");
 
 animate();
