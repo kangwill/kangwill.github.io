@@ -132,13 +132,18 @@ function ship(x, y){
 let fireArray = [];
 
 function Fire(x, y){
-    this.x = x+62;  
+    this.x = x+63;  
     this.y = y;
     this.draw = function(){
         c.beginPath();
         c.strokeStyle = "red";
         c.moveTo(this.x, this.y);
         c.lineTo(this.x, this.y-17);
+        c.lineTo(this.x-1, this.y-17);
+        c.lineTo(this.x-1, this.y);
+        c.lineTo(this.x-2, this.y);
+        c.lineTo(this.x-2, this.y-17);
+
         c.stroke();
     }
     this.update = function(target, target2, target3){
