@@ -220,8 +220,8 @@ function TargetProjects(x, y){
 
 let spaceShip = new ship((canvas.width/2)-62,canvas.height-150);
 let resume = new TargetResume((canvas.width/4)-120,canvas.height/6);
-let linkedin = new TargetLinkedin((2*canvas.width/4)-120,canvas.height/4);
-let projects = new TargetProjects((3*canvas.width/4)-120,canvas.height/6);
+let linkedin = new TargetLinkedin((2*canvas.width/4)-90,canvas.height/4);
+let projects = new TargetProjects((3*canvas.width/4)-50,canvas.height/6);
 
 function animate(){
     requestAnimationFrame(animate);
