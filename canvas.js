@@ -234,7 +234,7 @@ function animate(){
     c.strokeStyle = "lightgreen";
 
     c.beginPath();
-    c.font = "10px Arial";
+    c.font = "13px Arial";
     c.strokeText("Use the arrow keys to move left and right. Use the space bar to shoot or simply click on the targets.",5,canvas.height-10);
 
     linkedin.draw();
