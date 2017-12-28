@@ -4,7 +4,11 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight-10;
 
 let c = canvas.getContext('2d');
-let stop = false;
+
+let triggered = false;
+let triggered1 = false;
+let triggered2 = false;
+let fired = false;
 
 function random_rgba() {
     var o = Math.round, r = Math.random, s = 255;
@@ -27,11 +31,12 @@ let keyboard = {
 }
 
 window.addEventListener('keydown', function (e){
-    keyboard.key = e.keyCode;
+        keyboard.key = e.keyCode;
 })
 
 window.addEventListener('keyup', function (e){
     keyboard.key = false;
+    fired = false;
 })
 
 function Circle(x, y, dx, dy, radius){
@@ -94,7 +99,13 @@ function ship(x, y){
         if (keyboard.key == 37) {this.speedX = -10; }
         if (keyboard.key == 39) {this.speedX = 10; }
         if (keyboard.key == 32) {
-            fireArray.push(new Fire(this.x,this.y));
+            if(!fired){
+                fireArray.push(new Fire(this.x,this.y));
+                triggered = false;
+                triggered1 = false;
+                triggered2 = false;
+                fired = true;
+            }
         }
         this.draw();
     }
@@ -121,13 +132,13 @@ function ship(x, y){
 let fireArray = [];
 
 function Fire(x, y){
-    this.x = x+62;
+    this.x = x+62;  
     this.y = y;
     this.draw = function(){
         c.beginPath();
         c.strokeStyle = "red";
         c.moveTo(this.x, this.y);
-        c.lineTo(this.x, this.y-10);
+        c.lineTo(this.x, this.y-17);
         c.stroke();
     }
     this.update = function(target, target2, target3){
@@ -139,17 +150,14 @@ function Fire(x, y){
         let targetRight2 = target2.x + c.measureText(target2.text).width;
         let targetLeft3 = target3.x;
         let targetRight3 = target3.x + c.measureText(target3.text).width;
-        if (this.y < target.y && this.x >= targetLeft && this.x <= targetRight){
+        if (this.y < target.y && this.y > target.y-15 && this.x >= targetLeft && this.x <= targetRight){
             target.open();
-            stop = true;
         }
-        if (this.y < target2.y && this.x >= targetLeft2 && this.x <= targetRight2){
+        else if (this.y < target2.y  && this.y > target2.y-15 && this.x >= targetLeft2 && this.x <= targetRight2){
             target2.open();
-            stop = true;
         }
-        if (this.y < target3.y && this.x >= targetLeft3 && this.x <= targetRight3){
+        else if (this.y < target3.y && this.y > target3.y-15 && this.x >= targetLeft3 && this.x <= targetRight3){
             target3.open();
-            stop = true;
         }
     }   
 }
@@ -164,7 +172,10 @@ function TargetResume(x, y){
         c.strokeText(this.text,this.x,this.y);
     }
     this.open = function(){
-        window.location.href = "http://facebook.com";
+        if(triggered == false){
+            window.open("https://drive.google.com/file/d/1EK9D-auxZrzRodR79NU5tyEzExf1U98G/view?usp=sharing");
+            triggered = true;
+        }
     }
 }
 
@@ -178,21 +189,27 @@ function TargetLinkedin(x, y){
         c.strokeText(this.text,this.x,this.y);
     }
     this.open = function(){
-        window.location.href = "https://www.linkedin.com/in/kang-will/";
+        if(triggered1 == false){
+            window.open("https://www.linkedin.com/in/kang-will/");
+            triggered1 = true;
+        }
     }
 }
 
 function TargetProjects(x, y){
     this.x = x;
     this.y = y;
-    this.text = "Project";
+    this.text = "Github";
     this.draw = function(){
         c.beginPath();
         c.font = "50px Arial";
         c.strokeText(this.text,this.x,this.y);
     }
     this.open = function(){
-        window.location.href= "http://facebook.com";
+        if(triggered2 == false){
+            window.open("https://github.com/kangwill");
+            triggered2 = true;
+        }
     }
 }
 
@@ -202,9 +219,6 @@ let linkedin = new TargetLinkedin((2*canvas.width/4)-120,canvas.height/4);
 let projects = new TargetProjects((3*canvas.width/4)-120,canvas.height/6);
 
 function animate(){
-    if(stop == true){
-        c.stop();
-    }
     requestAnimationFrame(animate);
     c.clearRect(0, 0, innerWidth, innerHeight);
 
