@@ -173,7 +173,7 @@ function TargetResume(x, y){
     }
     this.open = function(){
         if(triggered == false){
-            window.open("https://drive.google.com/file/d/1EK9D-auxZrzRodR79NU5tyEzExf1U98G/view?usp=sharing");
+            window.open("https://drive.google.com/file/d/1mY06t44J3UyZmIsk5i64-YTA-jfZ_3w3/view?usp=sharing");
             triggered = true;
         }
     }
@@ -236,6 +236,17 @@ function animate(){
     c.beginPath();
     c.font = "13px Arial";
     c.strokeText("Use the arrow keys to move left and right. Use the space bar to shoot or simply click on the targets.",5,canvas.height-10);
+
+    c.beginPath();
+    c.font = "13px Arial";
+    c.strokeText("Use the arrow keys to move left and right. Use the space bar to shoot or simply click on the targets.",5,canvas.height-10);
+
+    c.strokeStyle = "yellow";
+    c.globalAlpha = .4;
+    c.font = "100px Arial";
+    c.strokeText("William Kang", (canvas.width/2)-300, 3*canvas.height/5);
+    c.globalAlpha = 1;
+    c.strokeStyle = "lightgreen";
 
     linkedin.draw();
     projects.draw();
