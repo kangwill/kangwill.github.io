@@ -167,6 +167,23 @@ function Fire(x, y){
     }   
 }
 
+function TargetDrawings(x,y){
+    this.x = x;
+    this.y = y;
+    this.text = "Drawings";
+    this.draw = function(){
+        c.beginPath();
+        c.font = "50px Arial";
+        c.strokeText(this.text,this.x,this.y);
+    }
+    this.open = function(){
+        if(triggered == false){
+            window.open("https://drive.google.com/file/d/1mY06t44J3UyZmIsk5i64-YTA-jfZ_3w3/view?usp=sharing");
+            triggered = true;
+        }
+    }
+}
+
 function TargetResume(x, y){
     this.x = x;
     this.y = y;
@@ -219,9 +236,10 @@ function TargetProjects(x, y){
 }
 
 let spaceShip = new ship((canvas.width/2)-62,canvas.height-150);
-let resume = new TargetResume((canvas.width/4)-120,canvas.height/6);
-let linkedin = new TargetLinkedin((2*canvas.width/4)-90,canvas.height/4);
-let projects = new TargetProjects((3*canvas.width/4)-50,canvas.height/6);
+let resume = new TargetResume((canvas.width/8),canvas.height/6);
+let linkedin = new TargetLinkedin((3*canvas.width/8),canvas.height/4);
+let projects = new TargetProjects((5*canvas.width/8),canvas.height/6);
+let drawing = new TargetDrawings}((7*canvas.width/8),canvas.height/4);
 
 function animate(){
     requestAnimationFrame(animate);
@@ -234,7 +252,7 @@ function animate(){
     spaceShip.update();
 
     for (let index = 0; index <fireArray.length; index++) {
-        fireArray[index].update(resume, linkedin, projects);
+        fireArray[index].update(resume, linkedin, projects, drawing);
     }
     c.strokeStyle = "lightgreen";
 
