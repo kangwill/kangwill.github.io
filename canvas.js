@@ -247,7 +247,7 @@ let spaceShip = new ship((canvas.width/2)-62,canvas.height-150);
 let resume = new TargetResume((canvas.width/8),canvas.height/6);
 let linkedin = new TargetLinkedin((3*canvas.width/8),canvas.height/4);
 let projects = new TargetProjects((5*canvas.width/8),canvas.height/6);
-let drawing = new TargetDrawings}((7*canvas.width/8),canvas.height/4);
+let drawing = new TargetDrawings((7*canvas.width/8),canvas.height/4);
 
 function animate(){
     requestAnimationFrame(animate);
