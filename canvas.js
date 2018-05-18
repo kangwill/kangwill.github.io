@@ -8,6 +8,7 @@ let c = canvas.getContext('2d');
 let triggered = false;
 let triggered1 = false;
 let triggered2 = false;
+let triggered3 = false;
 let fired = false;
 
 function random_rgba() {
@@ -104,6 +105,7 @@ function ship(x, y){
                 triggered = false;
                 triggered1 = false;
                 triggered2 = false;
+                triggered3 = false;
                 fired = true;
             }
         }
@@ -146,7 +148,7 @@ function Fire(x, y){
 
         c.stroke();
     }
-    this.update = function(target, target2, target3){
+    this.update = function(target, target2, target3, target4){
         this.y -= 15;
         this.draw();
         let targetLeft = target.x;
@@ -155,6 +157,9 @@ function Fire(x, y){
         let targetRight2 = target2.x + c.measureText(target2.text).width;
         let targetLeft3 = target3.x;
         let targetRight3 = target3.x + c.measureText(target3.text).width;
+        let targetLeft4 = target4.x 
+        let targetRight4 = target4.x + c.measureText(target4.text).width;
+        
         if (this.y < target.y && this.y > target.y-15 && this.x >= targetLeft && this.x <= targetRight){
             target.open();
         }
@@ -163,6 +168,9 @@ function Fire(x, y){
         }
         else if (this.y < target3.y && this.y > target3.y-15 && this.x >= targetLeft3 && this.x <= targetRight3){
             target3.open();
+        }
+        else if (this.y < target4.y && this.y > target4.y-15 && this.x >= targetLeft4 && this.x <= targetRight4){
+            target4.open();
         }
     }   
 }
@@ -177,9 +185,9 @@ function TargetDrawings(x,y){
         c.strokeText(this.text,this.x,this.y);
     }
     this.open = function(){
-        if(triggered == false){
-            window.open("https://drive.google.com/file/d/1mY06t44J3UyZmIsk5i64-YTA-jfZ_3w3/view?usp=sharing");
-            triggered = true;
+        if(triggered4 == false){
+            window.open("https://drive.google.com/open?id=1FVaCI9Fs5ASAG7sfIVdOOWIJtNunT1va");
+            triggered4 = true;
         }
     }
 }
@@ -271,9 +279,11 @@ function animate(){
     c.globalAlpha = 1;
     c.strokeStyle = "lightgreen";
 
+    
     linkedin.draw();
     projects.draw();
     resume.draw();
+    drawings.draw();
 }
 
 animate();
