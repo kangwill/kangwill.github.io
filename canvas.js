@@ -283,7 +283,7 @@ function animate(){
     linkedin.draw();
     projects.draw();
     resume.draw();
-    drawings.draw();
+    drawing.draw();
 }
 
 animate();
