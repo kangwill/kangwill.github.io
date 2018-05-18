@@ -185,9 +185,9 @@ function TargetDrawings(x,y){
         c.strokeText(this.text,this.x,this.y);
     }
     this.open = function(){
-        if(triggered4 == false){
+        if(triggered3 == false){
             window.open("https://drive.google.com/open?id=1FVaCI9Fs5ASAG7sfIVdOOWIJtNunT1va");
-            triggered4 = true;
+            triggered3 = true;
         }
     }
 }
