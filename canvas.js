@@ -178,7 +178,7 @@ function Fire(x, y){
 function TargetDrawings(x,y){
     this.x = x;
     this.y = y;
-    this.text = "Drawings";
+    this.text = "Designs";
     this.draw = function(){
         c.beginPath();
         c.font = "50px Arial";
