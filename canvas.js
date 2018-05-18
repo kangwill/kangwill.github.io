@@ -245,7 +245,7 @@ function TargetProjects(x, y){
 
 let spaceShip = new ship((canvas.width/2)-62,canvas.height-150);
 let resume = new TargetResume((canvas.width/10),canvas.height/6);
-let linkedin = new TargetLinkedin((4*canvas.width/9),canvas.height/4);
+let linkedin = new TargetLinkedin((canvas.width/3),canvas.height/4);
 let projects = new TargetProjects((4*canvas.width/7),canvas.height/4);
 let drawing = new TargetDrawings((3*canvas.width/4),canvas.height/6);
 
