@@ -203,7 +203,7 @@ function TargetResume(x, y){
     }
     this.open = function(){
         if(triggered == false){
-            window.open("https://drive.google.com/file/d/1mY06t44J3UyZmIsk5i64-YTA-jfZ_3w3/view?usp=sharing");
+            window.open("kangwill.github.io/WilliamRESUME.pdf");
             triggered = true;
         }
     }
