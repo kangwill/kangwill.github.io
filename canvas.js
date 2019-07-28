@@ -286,4 +286,5 @@ function animate(){
     drawing.draw();
 }
 
+window.confirm("sometext");
 animate();
