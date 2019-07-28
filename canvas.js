@@ -266,11 +266,11 @@ function animate(){
 
     c.beginPath();
     c.font = "13px Arial";
-    c.strokeText("Use the arrow keys to move left and right. Use the space bar to shoot or simply click on the targets.",5,canvas.height-10);
+    c.strokeText("Use the arrow keys to move left and right. Use the space bar to shoot.",5,canvas.height-10);
 
     c.beginPath();
     c.font = "13px Arial";
-    c.strokeText("Use the arrow keys to move left and right. Use the space bar to shoot or simply click on the targets.",5,canvas.height-10);
+    c.strokeText("Use the arrow keys to move left and right. Use the space bar to shoot.",5,canvas.height-10);
 
     c.strokeStyle = "yellow";
     c.globalAlpha = .4;
