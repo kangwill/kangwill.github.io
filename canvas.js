@@ -286,5 +286,5 @@ function animate(){
     drawing.draw();
 }
 
-window.confirm(<center>"Hello! Welcome to my website!\nMy name is William Kang and I am currently a student at Purdue University.\nMake sure to read the text at the bottom of the screen after pressing \"OK.\"\nHave fun!"</center>);
+window.confirm("Hello! Welcome to my website!\nMy name is William Kang and I am currently a student at Purdue University.\n\nMake sure to read the text at the bottom of the screen after pressing \"OK.\"\n\nHave fun!");
 animate();
