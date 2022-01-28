@@ -203,7 +203,7 @@ function TargetResume(x, y){
     }
     this.open = function(){
         if(triggered == false){
-            window.open("kangwill.github.io/WilliamRESUME.pdf");
+            window.open("kangwill.github.io/WilliamRESUME.pdf ");
             triggered = true;
         }
     }
